@@ -11,7 +11,9 @@ interface Ibook {
 const createTokenUrl = "https://simple-books-api.glitch.me/books"
 const getData = async()=>{
 try {
-  const token = await fetch(createTokenUrl);
+  const token = await fetch(createTokenUrl,{
+        cache:'no-store'
+    });
   if (!token.ok) {
     throw new Error("Failed to Fetch Data");
   }
@@ -23,10 +25,10 @@ try {
 }
 }
 export default async  function Home() {
-  const books:any = await getData()
+  const books = await getData()
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {books.map((book:any)=>(
+      {books.map((book:Ibook)=>(
         <div key={book.id}>
           {book.name}
           {book.error}

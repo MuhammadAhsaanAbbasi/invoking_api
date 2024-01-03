@@ -1,4 +1,4 @@
-
+'use server'
 import Link from 'next/link'
 import React from 'react'
 
@@ -11,8 +11,9 @@ interface Ibook {
 }
 const BooksPage = async () => {
     const response = await fetch(`${url}/books`,{
-        cache:"force-cache"
-    })
+        cache:"force-cache",
+        next: { revalidate: 300 } 
+    },)
     const book:Ibook[] = await response.json()
     console.log(book)
     return (

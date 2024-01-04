@@ -20,7 +20,7 @@ export default function Page(){
   if(error) return <div>failed to load</div>
   if(isLoading) return <div>Loading</div>
   return(
-    <div>{data.content}</div>
+    <div className='h-10 bg-slate-300'>{data.content}</div>
   )
 }
 
